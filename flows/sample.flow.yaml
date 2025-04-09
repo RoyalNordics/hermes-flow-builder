@@ -1,1 +1,50 @@
-# Sample Flowbuilder YAML spec (Web Scraper)
+flow_id: web_scraper_creation
+title: Create Web Scraper Agent
+scope: feature_level
+created_by: user_prompt
+version: 1.0
+
+description: |
+  Flow to define a Web Surfer AI agent that fetches structured data from the web.
+
+nodes:
+  - id: define_agent
+    label: Define Agent Role
+    type: user_input
+    description: Describe purpose of the new agent.
+    output: [agent_role]
+
+  - id: select_provider
+    label: Select Provider
+    type: dropdown
+    options: [Google, Bing, Brave]
+    input: [agent_role]
+    output: [search_provider]
+
+  - id: enter_api_key
+    label: Enter API Key
+    type: secure_input
+    input: [search_provider]
+    output: [auth_token]
+
+  - id: fetch_data
+    label: Perform Search
+    type: external_action
+    input: [auth_token, search_terms]
+    output: [raw_data]
+
+  - id: return_data
+    label: Return Structured Data
+    type: response
+    input: [raw_data]
+    output: [structured_result]
+
+connections:
+  - from: define_agent
+    to: select_provider
+  - from: select_provider
+    to: enter_api_key
+  - from: enter_api_key
+    to: fetch_data
+  - from: fetch_data
+    to: return_data
