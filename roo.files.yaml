@@ -1,1 +1,7 @@
-<INSERT CONTENT FROM `roo.files.yaml` HERE>
+required_directories:
+  - flows
+  - agents
+  - ui/components
+  - logs
+  - feedback
+  - prompts
