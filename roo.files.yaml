@@ -1,7 +1,38 @@
+# Roo File Manifest for Flowbuilder MVP
+
 required_directories:
-  - flows
-  - agents
-  - ui/components
-  - logs
-  - feedback
-  - prompts
+  - /flows
+  - /agents
+  - /ui/components
+  - /logs
+  - /feedback
+
+required_files:
+  - roo.rules.yaml
+  - roo.status.log
+  - flows/sample.flow.yaml
+  - agents/template.agent.yaml
+  - ui/config/flowbuilder.config.json
+  - ui/export/yaml-exporter.ts
+  - hermes/integration/yaml-parser.ts
+
+file_specs:
+  flows/sample.flow.yaml:
+    description: Example Flowbuilder YAML spec (Web Scraper)
+    format: validated against Flow Spec schema
+
+  agents/template.agent.yaml:
+    description: Agent blueprint file with role, logic, and training settings
+    format: must follow Agent Spec format
+
+  ui/config/flowbuilder.config.json:
+    description: Configuration settings for React Flow UI
+    format: valid JSON
+
+  ui/export/yaml-exporter.ts:
+    description: Converts current flow into YAML for Hermes
+    language: TypeScript
+
+  hermes/integration/yaml-parser.ts:
+    description: Reads exported YAML and feeds to Hermes build engine
+    language: TypeScript
